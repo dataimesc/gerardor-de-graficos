@@ -4,38 +4,51 @@
 <script src="
 https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js
 "></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <html>
-    <body style="background-color:rgb(42, 42, 101)">
+<div class="topnav">
+  <a class="active" href="https://dataimesc.imesc.ma.gov.br/">DataImesc</a>
+  <a href="https://dataimesc.github.io/calculadora/">Calculadora de Inflação</a>
+  <a href="https://dataimesc.github.io/conversor_de_moedas/">Conversor de Moedas</a>
+<a href="https://dataimesc.github.io/gerador_de_graficos/">Gerador de Gráficos</a>
+</div>
+    <body style="background-color:#090c4c">
 <img src="logo2.png" height="100" style="position:relative;top:30px;margin:40px;background-color:#fff; border-radius: 15px;"></img>
 
-   <div id="container2" ;>
+   <div id="container2" ; style="position:relative; left:10%;width:80%; border: 3px;border-radius: 3px;">
         <br>
-        <label for="select_serie" >Escolha uma série </label>
-        <select id="select_serie" class= "form-select" onchange="atualizar()"  data-size="2" style="max-width: 30%;"> 
+        <br>
+        <br>
+        <div style="background-color: #fff;border-radius: 25px;padding:20px;">
+        <h1 style="color:#000000;">GERADOR DE GRÁFICOS </h1>
+
+        <label for="select_serie" style="color:#000000;">Escolha uma série </label>
+        <select id="select_serie" class= "form-select" onchange="atualizar()"  data-size="2" style="width: 50%;"> 
             
         </select>
-        <div id="localid">
+        <div id="localid" style="background-color: #fff;border-radius: 30px;">
                  <div id="local_cidade" style="margin-top:6px">
-                <label for="cidade">Selecione um recorte territorial para o gráfico</label>
-                <select id="cidade" name="cidade" onchange="trocaNivel()">
+                <label for="cidade" style="color:#000000">Selecione um recorte territorial para o gráfico</label>
+                <select id="cidade" name="cidade" onchange="trocaNivel()"  class= "form-select" style="width: 50%;">
                 <option value="Brasil">...</option>
             </select>
             <br>
             <br>
-            <div style="position:absolute;right:0px">
-            </div>
+         
   <div >
          
             
         </div>
             <form id="graf_select">
-                <p>
-                Tipos de gráfico disponíveis:
-                </p>
-                <fieldset onchange="trocaNivel()" style="max-width:80px;">
+       
+            <label data-hover="Selecione a cor e pressione ENTER para atualizar o gráfico." for="campo1" style="position: relative;top:-210px;left:87%;color:#000000">Tipo de Gráfico</label>
+        <label for="firstcolor" style="position:relative;top:-29vh;left:55%;color:#000000;">Cor do Gráfico</label>
+
+            <fieldset id="campo1"onchange="trocaNivel()" style="background-color:#ffffff;width:80px;border-radius: 18px;padding:3px;position:relative;margin:10px;top:-216px;left:87%;">
               <input type="radio" value="line" name="radio1" class="radio_" >
               <label for="html" class="radio_">Linha</label><br>
               <input type="radio" value="doughnut" name="radio1" class="radio_">
@@ -45,16 +58,26 @@ https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js
             </fieldset>
             
             </form>
-            <button id="btnFilterReg" onclick="download_it()" class="btn btn-outline-success" 
-            >Download Gráfico </button>
+            <button id="btnFilterReg" onclick="download_it()" class="btn btn-success" style="position: relative;;top:-190px;left:88%;" >Download</button>
+      	<img id="load_text" src="294.gif" style="position:relative;left:30%;"></img>
+
         </div>
-        <p>Escolha a cor do gráfico:</p></p><input type="color" id="firstcolor" value="#000000" style="width:70px;top:45px;left:20px;shape-outside: circle(100% at 30%)" onchange="trocaNivel()"></input>
-        <div id="chart-wrapper" style="margin-top: 20px;" >
-           
-                <canvas id="myChart" height="40vh" width="40vw"></canvas>
+      <input type="color" id="firstcolor" value="#000000" style="width:70px;position:relative;;top:-343px;left:65%;;shape-outside: circle(100% at 30%)" onchange="trocaNivel()"></input>
+     
+    </div>
+
+      <div id="chart-wrapper" style="margin-top: 20px;position:relative;top:-30vh;" >
+       
+                <canvas id="myChart" height="40vh" width="40vw" ></canvas>
             </div>
+
         </div>
+
     </body>
+<footer>
+<br>
+                <h6  style="background-color:#fff;padding:5px;border-radius:15px;color:#000000;width:400px">Fonte das informações: API de dados IBGE</h6>
+</footer>
 <html>
 <script>
 function trocaNivel() {
@@ -104,7 +127,6 @@ function download_it() {
                  ,"2":"2: Quantidade Produzida - Algodão Herbáceo (em caroço)"
                  ,"3":"3: Quantidade Produzida - Amendoim (em casca)"
                  ,"4":"4: Quantidade Produzida - Arroz (em casca)"
-                 ,"6":"6: Quantidade Produzida - Cana-de-Açúcar"
                  ,"7":"7: Quantidade Produzida - Fava (em grão)"
                  ,"8":"8: Quantidade Produzida - Feijão (em grão)"
                  ,"9":"9: Quantidade Produzida - Mandioca"
@@ -664,23 +686,21 @@ function download_it() {
             879: "https://servicodados.ibge.gov.br/api/v3/agregados/289/periodos/-22/variaveis/145?localidades=N1[all]|N2[all]|N3[all]|N6[N3[21]]|N8[N3[21]]|N9[N3[21]]&classificacao=193[3434]",
             882: "https://servicodados.ibge.gov.br/api/v3/agregados/7431/periodos/-22/variaveis/10765?localidades=N1[all]|N2[all]|N3[all]&classificacao=86[2777]"
         }
-
+atualizar();
  var bra = ["Brasil"]
+
      function atualizar() {
-            $('#load').append('<img id="load_screen" src="https://i.pinimg.com/originals/49/23/29/492329d446c422b0483677d0318ab4fa.gif" style=" top:400px; left:50%;max-width:60px; max-heigth:60px; text-align: center;"></img>');
+            document.getElementById("load_text").innerHTML="Aguarde, enquanto o gráfico é gerado...";
+            $('#load').append('<img id="load_screen" src="294.gif" style=" top:400px; left:50%;max-width:60px; max-heigth:60px; text-align: center;"></img>');
             $("#select_serie").prop('disabled',true);     
             $('#myChart').remove(); // this is my <canvas> element
-
             let serie = document.getElementById("select_serie").value
             let url = dicio[serie];
             atualizeEst();
             trocaNivel();
             $('#load_screen').remove(); // this is my <canvas> element
             $("#select_serie").prop('disabled',false);
-                    
-                }
-          
-
+            }
       
         function atualizaGraph(datr, nome_cidade,titulo,cat) {
             resetCanvas();
@@ -716,7 +736,7 @@ function download_it() {
 
         function resetCanvas() {
             $('#myChart').remove(); // this is my <canvas> element
-            $('#chart-wrapper').append('<canvas id="myChart" height="40vh" width="80vw" style="background-color:white"><canvas>');
+            $('#chart-wrapper').append('<canvas id="myChart" height="40vh" width="80vw" style="background-color:white;"><canvas>');
 
         };
 
@@ -724,10 +744,12 @@ function download_it() {
         function trocaNivel() {
             let serie = document.getElementById("select_serie").value
             let url = dicio[serie];
+   
             fetch(url)
                 .then((response) => {
                     return response.json();
                 })
+            
                 .then((data) => {
 
                     var series_1 = data[0]["resultados"][0]["series"]
@@ -741,7 +763,8 @@ function download_it() {
                         if (local == local_sec) { atualizaGraph(series_2, local,title,categoria); }
 
 
-                    };
+                    }
+                
 		    var series_1 = data[0]["resultados"][0]["series"]
                    
                     for (i in series_1) {
@@ -752,7 +775,7 @@ function download_it() {
                
                         }
                     })
-
+               
 
 
                 }
@@ -760,10 +783,13 @@ function download_it() {
         ;
      var est = ["Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Sul", "Rio Grande do Norte", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"]
         function atualizeEst() {
-          $("#cidade").val('Maranhão')
+         
+            $("#cidade").val('Maranhão')
           trocaNivel();
+          
             let serie = document.getElementById("select_serie").value
             let url = dicio[serie];
+            
             fetch(url)
                 .then((response) => {
                     return response.json();
@@ -775,3 +801,35 @@ function download_it() {
         }
 
 </script>
+<style>
+	
+ .topnav {
+  background-color: #333;
+  overflow: hidden;
+  position:relative:
+  top:-5px;
+  left:-5px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
