@@ -691,7 +691,6 @@ atualizar();
 
      function atualizar() {
             document.getElementById("load_text").innerHTML="Aguarde, enquanto o gráfico é gerado...";
-            $('#load').append('<img id="load_screen" src="294.gif" style=" top:400px; left:50%;max-width:60px; max-heigth:60px; text-align: center;"></img>');
             $("#select_serie").prop('disabled',true);     
             $('#myChart').remove(); // this is my <canvas> element
             let serie = document.getElementById("select_serie").value
